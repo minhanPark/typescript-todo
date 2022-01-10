@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
+import reset from "styled-reset";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+`;
 
 interface ITodo {
   id: number;
@@ -17,9 +24,11 @@ function App(): JSX.Element {
     },
   ]);
   return (
-    <div>
+    <>
+      <GlobalStyle />
+      <Header />
       <h1>runningwater</h1>
-    </div>
+    </>
   );
 }
 
