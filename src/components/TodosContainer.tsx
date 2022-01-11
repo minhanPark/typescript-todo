@@ -38,10 +38,34 @@ const TodosContainer = (): JSX.Element => {
       isCompleted: true,
     },
   ]);
+  // 삭제 기능
+  const deleteTodo = (id: number): void => {
+    const newArr = todos.filter((todo) => todo.id !== id);
+    setTodos(newArr);
+  };
+  // Complete수정기능
+  const toggleComplete = (id: number): void => {
+    const newArr = todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        };
+      }
+      return todo;
+    });
+    setTodos(newArr);
+  };
+  // 추가 기능
   return (
     <Container>
       {todos.map((item: ITodo) => (
-        <Todo {...item} key={item.id} />
+        <Todo
+          {...item}
+          key={item.id}
+          deleteTodo={deleteTodo}
+          toggleComplete={toggleComplete}
+        />
       ))}
     </Container>
   );

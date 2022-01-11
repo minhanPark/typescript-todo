@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface ITodo {
+  id: number;
   title: string;
   desc: string;
   isCompleted: boolean;
+  deleteTodo(id: number): void;
+  toggleComplete(id: number): void;
 }
 
 interface IContainer {
@@ -59,13 +62,20 @@ const Btn = styled.button`
   }
 `;
 
-const Todo = ({ title, desc, isCompleted }: ITodo): JSX.Element => {
+const Todo = ({
+  id,
+  title,
+  desc,
+  isCompleted,
+  deleteTodo,
+  toggleComplete,
+}: ITodo): JSX.Element => {
   return (
-    <Wrapper isCompleted={isCompleted}>
+    <Wrapper onClick={() => toggleComplete(id)} isCompleted={isCompleted}>
       <Title isCompleted={isCompleted}>{title}</Title>
       <Para isCompleted={isCompleted}>{desc}</Para>
       <BtnWrapper>
-        <Btn>Delete</Btn>
+        <Btn onClick={() => deleteTodo(id)}>Delete</Btn>
       </BtnWrapper>
     </Wrapper>
   );
