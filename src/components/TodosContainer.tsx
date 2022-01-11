@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Todo from "./Todo";
 
 interface ITodo {
   id: number;
@@ -24,8 +25,26 @@ const TodosContainer = (): JSX.Element => {
       desc: "make todo with me",
       isCompleted: false,
     },
+    {
+      id: 2,
+      title: "sleep early",
+      desc: "please Sleep early asap",
+      isCompleted: false,
+    },
+    {
+      id: 3,
+      title: "game",
+      desc: "Play game with friend",
+      isCompleted: true,
+    },
   ]);
-  return <Container>sdsdsdsdsd</Container>;
+  return (
+    <Container>
+      {todos.map((item: ITodo) => (
+        <Todo {...item} key={item.id} />
+      ))}
+    </Container>
+  );
 };
 
 export default TodosContainer;
