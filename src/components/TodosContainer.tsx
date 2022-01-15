@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Todo from "./Todo";
+import TodoInput from "./TodoInput";
 
 interface ITodo {
   id: number;
@@ -58,16 +59,19 @@ const TodosContainer = (): JSX.Element => {
   };
   // 추가 기능
   return (
-    <Container>
-      {todos.map((item: ITodo) => (
-        <Todo
-          {...item}
-          key={item.id}
-          deleteTodo={deleteTodo}
-          toggleComplete={toggleComplete}
-        />
-      ))}
-    </Container>
+    <>
+      <Container>
+        {todos.map((item: ITodo) => (
+          <Todo
+            {...item}
+            key={item.id}
+            deleteTodo={deleteTodo}
+            toggleComplete={toggleComplete}
+          />
+        ))}
+      </Container>
+      <TodoInput />
+    </>
   );
 };
 
