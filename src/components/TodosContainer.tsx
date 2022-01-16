@@ -58,6 +58,18 @@ const TodosContainer = (): JSX.Element => {
     setTodos(newArr);
   };
   // 추가 기능
+  const addTodo = ({ title, desc }: { title: string; desc: string }): void => {
+    const id = todos[todos.length - 1]["id"] + 1;
+    setTodos([
+      ...todos,
+      {
+        id,
+        title,
+        desc,
+        isCompleted: false,
+      },
+    ]);
+  };
   return (
     <>
       <Container>
@@ -70,7 +82,7 @@ const TodosContainer = (): JSX.Element => {
           />
         ))}
       </Container>
-      <TodoInput />
+      <TodoInput addTodo={addTodo} />
     </>
   );
 };

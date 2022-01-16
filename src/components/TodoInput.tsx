@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+interface ITodoInput {
+  addTodo(props: { title: string; desc: string }): void;
+}
+
 const Wrapper = styled.div`
   border: 2px solid #f3a683;
   max-width: 450px;
@@ -25,19 +29,23 @@ const SButton = styled.button`
   border: none;
   background-color: #f3a683;
   color: #ced6e0;
+  padding: 8px 13px;
   &:hover {
     background-color: #e15f41;
     color: #2f3542;
   }
 `;
 
-const TodoInput = () => {
+const TodoInput = ({ addTodo }: ITodoInput) => {
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
-    console.log("submit");
+    if (title === "" || desc === "") return;
+    addTodo({ title, desc });
+    setTitle("");
+    setDesc("");
   };
   return (
     <Wrapper>
