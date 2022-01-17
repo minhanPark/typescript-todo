@@ -40,7 +40,8 @@ const TodosContainer = (): JSX.Element => {
     },
   ]);
   // 삭제 기능
-  const deleteTodo = (id: number): void => {
+  const deleteTodo = (event: React.SyntheticEvent, id: number): void => {
+    event.stopPropagation();
     const newArr = todos.filter((todo) => todo.id !== id);
     setTodos(newArr);
   };

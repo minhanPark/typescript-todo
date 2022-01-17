@@ -6,7 +6,7 @@ interface ITodo {
   title: string;
   desc: string;
   isCompleted: boolean;
-  deleteTodo(id: number): void;
+  deleteTodo(event: React.SyntheticEvent, id: number): void;
   toggleComplete(id: number): void;
 }
 
@@ -75,7 +75,7 @@ const Todo = ({
       <Title isCompleted={isCompleted}>{title}</Title>
       <Para isCompleted={isCompleted}>{desc}</Para>
       <BtnWrapper>
-        <Btn onClick={() => deleteTodo(id)}>Delete</Btn>
+        <Btn onClick={(e) => deleteTodo(e, id)}>Delete</Btn>
       </BtnWrapper>
     </Wrapper>
   );
